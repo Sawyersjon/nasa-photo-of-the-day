@@ -13,16 +13,22 @@ function App() {
   useEffect(() => {
     axios.get(`https://api.nasa.gov/planetary/apod?api_key=GJMMEWVSfEdzwBB2HgvjlAXRGThD9aBfQ9okkKDO`)
       .then(res => {
-        console.log(res)
+        setPhoto(res.data.url)
       })
-  })
+      .catch(err => {
+        console.error(err)
+      })
+  }, [])
+
+  
 
   return (
     <div className="App">
-      <p>
-        Read through the instructions in the README.md file to build your NASA
-        app! Have fun <span role="img" aria-label='go!'>🚀</span>!
-      </p>
+
+      <h1>Astronomy Photo of the Day!!</h1>
+
+      <img src={photo} alt = ''></img>
+
     </div>
   );
 }
